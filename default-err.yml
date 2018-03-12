@@ -1,0 +1,10 @@
+---
+# This playbook deploys a simple standalone Tomcat 7 server.
+
+- hosts: all
+  user: vagrant
+#  remote_user: vagrant
+  sudo: yes
+
+  roles:
+    - influxdb 

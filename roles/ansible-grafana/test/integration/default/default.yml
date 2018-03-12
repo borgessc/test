@@ -1,0 +1,30 @@
+---
+- name: InfluxDB play
+  hosts: test-kitchen
+
+  vars:
+    grafana_plugins_install:
+      - grafana-piechart-panel
+      - grafana-worldmap-panel
+      - grafana-clock-panel
+      - grafana-example-app
+    grafana_plugins_remove:
+      - grafana-example-app
+    grafana_auth_ldap_enabled: true
+    telegraf_global_tags:
+      machine_role: test-kitchen
+    docker_engine_opts:
+      - '-H tcp://0.0.0.0:2375'
+      - '-H unix:///var/run/docker.sock'
+
+  vars_files:
+    - roles/ansible-grafana/test/plugins-vars.yml
+
+  roles:
+    # - layer2pty.docker
+    # - layer2pty.influxdb
+    # - layer2pty.telegraf
+    - docker
+    - influxdb
+    - telegraf
+    - ansible-grafana

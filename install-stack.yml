@@ -1,0 +1,11 @@
+---
+- name: TELEMETRY VHA PROJECT
+  hosts: localhost
+  become: yes
+
+  roles:
+    - ansible-docker
+    - ansible-influxdb
+    - ansible-telegraf
+    - ansible-grafana
+    - ansible-kapacitor 

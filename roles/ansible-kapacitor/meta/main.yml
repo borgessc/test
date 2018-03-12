@@ -1,0 +1,18 @@
+---
+galaxy_info:
+  author: "Sergio Borges"
+  company: Layer2
+  license: BSD
+  description: Kapacitor connector
+  min_ansible_version: 2.0
+  platforms:
+    - name: EL
+      versions:
+        - 7
+    - name: Ubuntu
+      versions:
+        - trusty
+  galaxy_tags:
+    - kapacitor
+    - monitoring
+dependencies: []

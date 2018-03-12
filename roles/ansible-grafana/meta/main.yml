@@ -1,0 +1,18 @@
+---
+galaxy_info:
+  author: "Sergio Borges"
+  description: Grafana Dashboard for telemetry MTD.
+  company: Layer2 PTY
+  license: BSD
+  min_ansible_version: 2.0
+  platforms:
+    - name: EL
+      versions:
+        - 7
+    - name: Ubuntu
+      versions:
+        - trusty
+  galaxy_tags:
+    - grafana
+    - monitoring
+dependencies: []

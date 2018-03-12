@@ -1,0 +1,28 @@
+---
+# defaults file for ansible-telemetry
+user_id: "vagrant"
+group_id: "docker"
+
+# Enviroment directory created at installation include docker-compose.yml
+
+# Becarefull as name used by docker-compose and used for urls
+env_path: "/opt/pipeline"  
+
+# Data and log path
+log_path: "{{env_path}}/log"
+data_path: "{{env_path}}/data"
+
+# Pipeline
+pipeline_path: "/opt/pipeline"
+pipeline_conf: "{{pipeline_path}}/pipeline.conf"
+pipeline_log: "{{pipeline_path}}/log/pipeline.log"
+pipeline_pem: "{{pipeline_path}}/pig"
+pipeline_dump: "{{pipeline_path}}/log/dump.txt"
+dump_path_config: "file = log/dump.txt"
+
+# Influx
+url: "http://localhost:3000"
+username: "admin"
+password: "admin"
+data_source: "InfluxDB"
+url_data_source: "http://environment_influxdb_1:8086"

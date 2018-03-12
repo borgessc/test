@@ -1,0 +1,33 @@
+---
+
+- name: Install kapacitor
+  include: "install-{{ ansible_os_family|lower }}.yml"
+
+- name: Update kapacitor config file
+  template:
+    src:   kapacitor.conf.j2
+    dest:  "{{ kapacitor_conf_dir }}/kapacitor.conf"
+    owner: root
+    group: root
+    mode:  0644
+  notify: Restart kapacitor
+
+- name: Update kapacitor startup script envrionment variables file
+  template:
+    src:   etc.default.kapacitor.j2
+    dest:  /etc/default/kapacitor
+    owner: root
+    group: root
+    mode:  0644
+  notify: Restart kapacitor
+
+- name: Create kapacitor logrotate config file
+  template:
+    src:   kapacitor.logrotate.j2
+    dest:  /etc/logrotate.d/kapacitor
+    owner: root
+    group: root
+    mode:  0644
+
+- name: Start kapacitor
+  service: name=kapacitor enabled=yes state=started

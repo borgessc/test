@@ -1,0 +1,41 @@
+---
+
+- name: Grafana Install
+  include: "install-{{ ansible_os_family|lower }}.yml"
+
+- name: Create grafana config file
+  template:
+    src:   grafana.ini.j2
+    dest:  "{{ grafana_conf_dir }}/grafana.ini"
+    owner: root
+    group: "{{ grafana_group }}"
+    mode:  0640
+  notify: Restart grafana
+
+- name: Create grafana ldap config file
+  template:
+    src:   ldap.toml.j2
+    dest:  "{{ grafana_conf_dir }}/ldap.toml"
+    owner: root
+    group: "{{ grafana_group }}"
+    mode:  0640
+  when: grafana_auth_ldap_enabled
+  notify: Restart grafana
+
+- set_fact: _startup_env_vars_dir=/etc/sysconfig
+  when: ansible_os_family|lower == 'redhat'
+
+- name: Update grafana startup script envrionment variables file
+  template:
+    src:   etc.default.grafana-server.j2
+    dest:  "{{ _startup_env_vars_dir|default('/etc/default') }}/grafana-server"
+    owner: root
+    group: root
+    mode:  0644
+  notify: Restart grafana
+
+- name: Start grafana
+  service: name=grafana-server enabled=yes state=started
+
+- name: Grafana plugins
+  include: plugins.yml

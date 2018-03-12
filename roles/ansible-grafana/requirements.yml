@@ -1,0 +1,6 @@
+# - src: layer2pty.docker
+# - src: layer2pty.influxdb
+# - src: layer2pty.telegraf
+- src: https://github.com/layer2pty/docker.git
+- src: https://github.com/layer2pty/influxdb.git
+- src: https://github.com/layer2pty/telegraf.git

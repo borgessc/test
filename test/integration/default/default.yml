@@ -1,0 +1,17 @@
+---
+- name: TELEMETRY VHA PROJECT
+  hosts: test-kitchen
+  become: yes
+
+  roles:
+      # - ansible-docker
+      # - ansible-influxdb
+      # - ansible-telegraf
+      # - ansible-grafana
+      # - ansible-kapacitor
+    - ansible-docker
+    - ansible-influxdb
+    - ansible-telegraf
+    - ansible-grafana
+    - ansible-kapacitor
+ 

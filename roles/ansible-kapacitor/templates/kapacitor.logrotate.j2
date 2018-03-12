@@ -1,0 +1,17 @@
+{{ kapacitor_log_dir }}/kapacitor.log {
+    daily
+    rotate 7
+    missingok
+    dateext
+    copytruncate
+    compress
+}
+
+{{ kapacitor_log_dir }}/kapacitord.err {
+    weekly
+    rotate 5
+    missingok
+    dateext
+    copytruncate
+    compress
+}
